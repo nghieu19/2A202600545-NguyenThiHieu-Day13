@@ -7,10 +7,6 @@
 - [REPO_URL]: https://github.com/nghieu19/2A202600545-NguyenThiHieu-Day13
 - [MEMBERS]:
   - Member A: Nguyen Thi Hieu | Role: Logging, PII, tracing, SLOs, alerts, load testing, dashboard, and report
-  - Member B: N/A | Role: Individual submission
-  - Member C: N/A | Role: Individual submission
-  - Member D: N/A | Role: Individual submission
-  - Member E: N/A | Role: Individual submission
 
 ---
 
@@ -64,21 +60,6 @@ Current values come from `data/metrics_snapshot.json`. The snapshot is a capture
 - [TASKS_COMPLETED]: Implemented request correlation ID propagation and response headers; bound hashed user/session/feature/model context to structured logs; enabled recursive PII redaction for email, phone, identity numbers, cards, credentials, passport, and address data; added RAG/LLM tracing metadata and token usage; added quality, cost, token, traffic, and latency metrics; defined SLOs and four alert rules; created dashboard artifacts and completed incident analysis/reporting.
 - [EVIDENCE_LINK]: [Commit cb73bc5](https://github.com/nghieu19/2A202600545-NguyenThiHieu-Day13/commit/cb73bc566c317f3883e19d6cc6d8421cfa77302b) and the current working-tree files `app/agent.py`, `app/pii.py`, `app/tracing.py`, `config/slo.yaml`, `config/alert_rules.yaml`, `docs/grafana-dashboard.json`, and `scripts/evaluate_alerts.py`.
 
-### [MEMBER_B_NAME]: N/A
-- [TASKS_COMPLETED]: N/A - individual submission.
-- [EVIDENCE_LINK]: N/A
-
-### [MEMBER_C_NAME]: N/A
-- [TASKS_COMPLETED]: N/A - individual submission.
-- [EVIDENCE_LINK]: N/A
-
-### [MEMBER_D_NAME]: N/A
-- [TASKS_COMPLETED]: N/A - individual submission.
-- [EVIDENCE_LINK]: N/A
-
-### [MEMBER_E_NAME]: N/A
-- [TASKS_COMPLETED]: N/A - individual submission.
-- [EVIDENCE_LINK]: N/A
 
 ---
 
