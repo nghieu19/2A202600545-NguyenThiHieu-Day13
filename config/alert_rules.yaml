@@ -5,15 +5,28 @@ alerts:
     type: symptom-based
     owner: team-oncall
     runbook: docs/alerts.md#1-high-latency-p95
+    description: "Cảnh báo khi p95 latency vượt quá 5000ms trong 30 phút"
+
   - name: high_error_rate
     severity: P1
     condition: error_rate_pct > 5 for 5m
     type: symptom-based
     owner: team-oncall
     runbook: docs/alerts.md#2-high-error-rate
+    description: "Cảnh báo nghiêm trọng khi error rate vượt quá 5% trong 5 phút"
+
   - name: cost_budget_spike
     severity: P2
     condition: hourly_cost_usd > 2x_baseline for 15m
     type: symptom-based
     owner: finops-owner
     runbook: docs/alerts.md#3-cost-budget-spike
+    description: "Cảnh báo khi chi phí theo giờ tăng hơn 2 lần baseline"
+
+  - name: low_quality_score
+    severity: P2
+    condition: quality_score_avg < 0.75 for 30m
+    type: quality-based
+    owner: team-oncall
+    runbook: docs/alerts.md#4-low-quality-score
+    description: "Cảnh báo khi chất lượng câu trả lời giảm dưới ngưỡng 0.75"

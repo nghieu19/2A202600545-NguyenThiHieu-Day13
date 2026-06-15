@@ -1,16 +1,23 @@
 service: day13-observability-lab
 window: 28d
+
 slis:
   latency_p95_ms:
     objective: 3000
     target: 99.5
-    note: Replace with your group's target
+    description: "95% request phải có latency dưới 3000ms"
+
   error_rate_pct:
     objective: 2
     target: 99.0
+    description: "Tỷ lệ lỗi không vượt quá 2%"
+
   daily_cost_usd:
     objective: 2.5
     target: 100.0
+    description: "Chi phí mỗi ngày không vượt quá 2.5 USD"
+
   quality_score_avg:
     objective: 0.75
     target: 95.0
+    description: "Điểm chất lượng trung bình phải >= 0.75"

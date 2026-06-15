@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, PlainTextResponse
 from structlog.contextvars import bind_contextvars
 
 from .agent import LabAgent
@@ -40,6 +40,31 @@ async def health() -> dict:
 @app.get("/metrics")
 async def metrics() -> dict:
     return snapshot()
+
+
+@app.get('/prometheus')
+async def prometheus_metrics() -> PlainTextResponse:
+    m = snapshot()
+    lines: list[str] = []
+    # basic numeric gauges
+    lines.append(f"app_latency_p50_ms {m.get('latency_p50', 0)}")
+    lines.append(f"app_latency_p95_ms {m.get('latency_p95', 0)}")
+    lines.append(f"app_latency_p99_ms {m.get('latency_p99', 0)}")
+    lines.append(f"app_requests_total {m.get('traffic', 0)}")
+    lines.append(f"app_avg_cost_usd {m.get('avg_cost_usd', 0.0)}")
+    lines.append(f"app_total_cost_usd {m.get('total_cost_usd', 0.0)}")
+    lines.append(f"app_tokens_in_total {m.get('tokens_in_total', 0)}")
+    lines.append(f"app_tokens_out_total {m.get('tokens_out_total', 0)}")
+    lines.append(f"app_quality_avg {m.get('quality_avg', 0.0)}")
+
+    # errors per type
+    for et, count in (m.get('error_breakdown') or {}).items():
+        # sanitize label
+        et_s = str(et).replace('"', '\\"')
+        lines.append(f'app_errors_total{{error_type="{et_s}"}} {int(count)}')
+
+    body = "\n".join(lines) + "\n"
+    return PlainTextResponse(body, media_type="text/plain; version=0.0.4")
 
 
 @app.post("/chat", response_model=ChatResponse)

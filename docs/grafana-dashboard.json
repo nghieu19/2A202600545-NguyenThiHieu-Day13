@@ -1,0 +1,119 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "#000000",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": null,
+    "links": [],
+    "panels": [
+        {
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 12,
+                "x": 0,
+                "y": 0
+            },
+            "id": 1,
+            "options": {},
+            "title": "P95 Latency (ms)",
+            "type": "stat",
+            "targets": [
+                {
+                    "expr": "app_latency_p95_ms",
+                    "legendFormat": "p95",
+                    "refId": "A"
+                }
+            ]
+        },
+        {
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 12,
+                "x": 12,
+                "y": 0
+            },
+            "id": 2,
+            "options": {},
+            "title": "Traffic (requests)",
+            "type": "stat",
+            "targets": [
+                {
+                    "expr": "app_requests_total",
+                    "legendFormat": "requests",
+                    "refId": "A"
+                }
+            ]
+        },
+        {
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 24,
+                "x": 0,
+                "y": 6
+            },
+            "id": 3,
+            "options": {},
+            "title": "Error Breakdown",
+            "type": "table",
+            "targets": [
+                {
+                    "expr": "sum by (error_type) (app_errors_total)",
+                    "refId": "A"
+                }
+            ]
+        }
+    ],
+    "schemaVersion": 30,
+    "style": "dark",
+    "tags": [
+        "observability",
+        "lab13"
+    ],
+    "templating": {
+        "list": [
+            {
+                "name": "datasource",
+                "type": "datasource",
+                "pluginId": "prometheus",
+                "pluginName": "Prometheus",
+                "query": "prometheus"
+            }
+        ]
+    },
+    "time": {
+        "from": "now-1h",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Lab13 - App Overview",
+    "uid": "lab13-app-overview",
+    "version": 1
+}
